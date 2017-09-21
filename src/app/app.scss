@@ -22,6 +22,32 @@ ion-row {
     color: #222;
 }
 
+// .descricao{
+//     min-height: 12rem;
+//     // background: #fff;
+//     // border-radius: 0.7rem;
+// }
+
+// .label-cadastro{
+//     font-size: 1.6rem;
+// }
+// .input-cadastro{
+//     background: #fff;
+//     border-radius: 0.7rem;
+// }
+textarea{
+    min-height: 12rem;
+}
+
+.label-cadastro{
+    font-size: 1.7rem !important;
+}
+
+.item{
+    // background: transparent;
+    border-radius: 0.7rem;
+}
+
 h1{
     font-size: 3.5rem;
     color: $laranja-fundo;
@@ -39,11 +65,15 @@ h1{
 .center{
     text-align: center;
 }
-
+ion-header{
+    div{
+        background: $amarelo !important;
+    }
+}
 ion-content {
     background: $amarelo; /* For browsers that do not support gradients */
     background: -webkit-linear-gradient($amarelo, $laranja-fundo); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient($amarelo, $laranja-fundo); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient($amarelo, $laranja-fundo); /* For Firefox 3.6 to 15 */
     background: linear-gradient($amarelo, $laranja-fundo); /* Standard syntax */
-  }
+}

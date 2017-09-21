@@ -1,0 +1,44 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>cadastroFirst</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item class="itens">
+    <ion-label class="label-cadastro" stacked color="dark">Selecione um tipo:</ion-label>
+    <ion-select interface="action-sheet">
+        <ion-option>Bacon</ion-option>
+        <ion-option>Black Olives</ion-option>
+        <ion-option>Extra Cheese</ion-option>
+        <ion-option>Mushrooms</ion-option>
+        <ion-option>Pepperoni</ion-option>
+        <ion-option>Sausage</ion-option>
+    </ion-select>
+  </ion-item>
+  <br>
+  <ion-item class="itens">
+    <ion-label class="label-cadastro" stacked color="dark">Endereco</ion-label>
+    <ion-input class="input-cadastro"></ion-input>
+  </ion-item>
+  <br>
+  <ion-item class="itens">
+    <ion-label class="label-cadastro" stacked color="dark">Nome</ion-label>
+    <ion-input class="input-cadastro"></ion-input>
+  </ion-item>
+  <br>
+  <ion-item class="itens">
+    <ion-label class="label-cadastro" stacked color="dark">Descrição</ion-label>
+    <ion-textarea class="descricao"></ion-textarea> 
+  </ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col offset-8>
+        <button class="button-cadastrar" ion-button color="laranja-escuro">Confirmar</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

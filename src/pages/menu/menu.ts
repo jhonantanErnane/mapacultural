@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { CadastroFirstPage } from '../cadastro-first/cadastro-first';
 
 @Component({
   selector: 'page-menu',
@@ -13,5 +14,10 @@ export class MenuPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MenuPage');
   }
-
+  cadastro() {
+    this.navCtrl.push(CadastroFirstPage);
+  }
+  mapa() {
+    // this.navCtrl.push();
+  }
 }
