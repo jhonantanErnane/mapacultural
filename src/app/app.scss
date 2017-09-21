@@ -14,3 +14,36 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+$amarelo:    #fbee21;
+$laranja-fundo: #f78b28;
+
+ion-row {
+    text-align: center;
+    color: #222;
+}
+
+h1{
+    font-size: 3.5rem;
+    color: $laranja-fundo;
+}
+.icon {
+    font-size: 6rem;
+}
+
+.menuButton {
+    min-height: 15rem;
+    font-size: 3rem;
+    border-radius: 2.5rem;
+}
+
+.center{
+    text-align: center;
+}
+
+ion-content {
+    background: $amarelo; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient($amarelo, $laranja-fundo); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient($amarelo, $laranja-fundo); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient($amarelo, $laranja-fundo); /* For Firefox 3.6 to 15 */
+    background: linear-gradient($amarelo, $laranja-fundo); /* Standard syntax */
+  }
