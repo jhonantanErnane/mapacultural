@@ -2,5 +2,7 @@
   "name": "mapacultural",
   "app_id": "",
   "type": "ionic-angular",
-  "integrations": {}
+  "integrations": {
+    "cordova": {}
+  }
 }
