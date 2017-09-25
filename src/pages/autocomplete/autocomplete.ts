@@ -27,12 +27,12 @@ export class AutocompletePage {
     this.loadMap();
   }
   loadMap() {
-    const latLng = new google.maps.LatLng(-34.9290, 138.6010);
+    const latLng = new google.maps.LatLng(-19.932987, -43.971652);
 
     const mapOptions = {
       center: latLng,
       zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      mapTypeId: 'roadmap' // google.maps.MapTypeId.ROADMAP
     };
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);

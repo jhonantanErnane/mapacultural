@@ -16,16 +16,18 @@
   <script src="cordova.js"></script>
 
   <!-- un-comment this code to enable service worker
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js')
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
         .then(() => console.log('service worker installed'))
         .catch(err => console.error('Error', err));
-    }
-  </script>-->
-
-  <link href="build/main.css" rel="stylesheet">
-
+      }
+    </script>-->
+    
+    <link href="build/main.css" rel="stylesheet">
+    
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDaPkuFZA4USo1-evIwjof1qYgeSsARakw"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyDaPkuFZA4USo1-evIwjof1qYgeSsARakw"></script>
 </head>
 
 <body>
@@ -43,7 +45,6 @@
   <!-- The main bundle js is generated during the build process -->
   <script src="build/main.js"></script>
   <!-- <script src='http://maps.googleapis.com/maps/api/js?v=3&sensor=false&amp;libraries=places&key=AIzaSyDaPkuFZA4USo1-evIwjof1qYgeSsARakw'></script> -->
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDaPkuFZA4USo1-evIwjof1qYgeSsARakw"></script>
 </body>
 
 </html>

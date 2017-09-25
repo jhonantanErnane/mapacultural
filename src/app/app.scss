@@ -55,7 +55,10 @@ h1{
 .icon {
     font-size: 6rem;
 }
-
+#map {
+    width: 100% !important;
+    height: 300px !important;
+  }
 .menuButton {
     min-height: 15rem;
     // font-size: 3rem;
