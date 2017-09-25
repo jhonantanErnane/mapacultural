@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>cadastroFirst</ion-title>
+    <ion-title>Cadastro</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -22,7 +22,7 @@
   <br>
   <ion-item class="itens">
     <ion-label class="label-cadastro" stacked color="dark">Endereco</ion-label>
-    <ion-input class="input-cadastro"></ion-input>
+    <ion-input (focus)="showAddressModal()" [(ngModel)]="address.place" class="input-cadastro"></ion-input>
   </ion-item>
   <br>
   <ion-item class="itens">

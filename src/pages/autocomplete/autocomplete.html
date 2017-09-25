@@ -1,0 +1,28 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>Enter address</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-8>
+        <ion-searchbar cancelButtonText="Cancelar" placeholder="Endereco" [(ngModel)]="autocomplete.query" (ionInput)="updateSearch()"
+          (ionCancel)="dismiss()"></ion-searchbar>
+      </ion-col>
+      <ion-col>
+        <a (click)="dismiss()">Cancelar</a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list>
+    <ion-item *ngFor="let item of autocompleteItems" tappable (click)="chooseItem(item)">
+      {{ item }}
+    </ion-item>
+  </ion-list>
+  <div #map id="map"></div>
+
+  <!-- <agm-map [latitude]="lat" [longitude]="lng">
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  </agm-map> -->
+</ion-content>
