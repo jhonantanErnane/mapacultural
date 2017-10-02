@@ -11,6 +11,13 @@ import { CadastroFirstPage } from '../pages/cadastro-first/cadastro-first';
 import { AgmCoreModule } from '@agm/core';
 import { AutocompletePage } from '../pages/autocomplete/autocomplete';
 
+
+import { AngularFireModule } from 'angularfire2';
+import { environment } from '../environments/enviroment';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { DatabaseProvider } from '../providers/database/database';
+import { Camera } from '@ionic-native/camera';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -22,6 +29,7 @@ import { AutocompletePage } from '../pages/autocomplete/autocomplete';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(environment.firebase)
     // AgmCoreModule
     // .forRoot({
     //   apiKey: 'AIzaSyDaPkuFZA4USo1-evIwjof1qYgeSsARakw'
@@ -39,7 +47,10 @@ import { AutocompletePage } from '../pages/autocomplete/autocomplete';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    Camera,
+    AngularFireDatabase,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DatabaseProvider
   ]
 })
 export class AppModule {}

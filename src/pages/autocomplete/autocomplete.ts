@@ -11,8 +11,8 @@ export class AutocompletePage {
   autocomplete;
   @ViewChild('map') mapElement: ElementRef;
   map: any;
-  lat: number = 51.678418;
-  lng: number = 7.809007;
+  lat= 51.678418;
+  lng= 7.809007;
   service = new google.maps.places.AutocompleteService();
 
   constructor(public viewCtrl: ViewController, private zone: NgZone) {
@@ -44,10 +44,11 @@ export class AutocompletePage {
 
   chooseItem(item: any) {
     this.viewCtrl.dismiss(item);
+    console.log(item);
   }
 
   updateSearch() {
-    if (this.autocomplete.query == '') {
+    if (this.autocomplete.query === '') {
       this.autocompleteItems = [];
       return;
     }
@@ -59,11 +60,13 @@ export class AutocompletePage {
       }
       , function (predictions, status) {
         me.autocompleteItems = [];
-        me.zone.run(function () {
-          predictions.forEach(function (prediction) {
-            me.autocompleteItems.push(prediction.description);
+        if (predictions !== null) {
+          me.zone.run(function () {
+            predictions.forEach(function (prediction) {
+              me.autocompleteItems.push(prediction.description);
+            });
           });
-        });
+        }
       });
+    }
   }
-}
