@@ -6,6 +6,7 @@ import { AutocompletePage } from '../autocomplete/autocomplete';
 import { DatabaseProvider } from '../../providers/database/database';
 // import { } from 'googlemaps';
 import { Camera } from '@ionic-native/camera';
+import { LoadingProvider } from '../../providers/loading/loading';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class CadastroFirstPage {
   // @ViewChild('search')
   // public searchElementRef: ElementRef;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private ngZone: NgZone
+  constructor(public navCtrl: NavController, public navParams: NavParams, private ngZone: NgZone, private loading: LoadingProvider
     , private modalCtrl: ModalController, private providerdb: DatabaseProvider, private cameraPlugin: Camera) {
   // , private mapsAPILoader: MapsAPILoader) {
     this.address = {
@@ -34,15 +35,20 @@ export class CadastroFirstPage {
     };
   }
   showAddressModal() {
-    const modal = this.modalCtrl.create(AutocompletePage);
-    const me = this;
-    modal.onDidDismiss(data => {
-      this.address.place = data;
-    });
-    modal.present();
+    setTimeout(() => {
+      const modal = this.modalCtrl.create(AutocompletePage);
+      const me = this;
+      modal.onDidDismiss(data => {
+        this.address.place = data;
+      });
+      modal.present();
+    }, 100);
   }
   ngOnInit() {
+    // this.loading.presentLoadingDefault('Carregando Categorias...');
+    this.loading.presentLoadingCustom();
     this.providerdb.getAllCategories().subscribe((categories) => {
+      // this.loading.hideLoadingDefault();
       this.categorias = categories;
       console.log(this.categorias);
       console.log(categories);

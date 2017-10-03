@@ -17,6 +17,7 @@ import { environment } from '../environments/enviroment';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { DatabaseProvider } from '../providers/database/database';
 import { Camera } from '@ionic-native/camera';
+import { LoadingProvider } from '../providers/loading/loading';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { Camera } from '@ionic-native/camera';
     Camera,
     AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    DatabaseProvider
+    DatabaseProvider,
+    LoadingProvider
   ]
 })
 export class AppModule {}
