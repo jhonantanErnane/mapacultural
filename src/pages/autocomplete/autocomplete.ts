@@ -11,11 +11,13 @@ export class AutocompletePage {
   autocomplete;
   @ViewChild('map') mapElement: ElementRef;
   map: any;
-  lat= 51.678418;
-  lng= 7.809007;
+  // una
+  lat = -19.9758436;
+  lng = -44.02022569999997;
   service = new google.maps.places.AutocompleteService();
 
-  constructor(public viewCtrl: ViewController, private zone: NgZone) {
+  constructor(public viewCtrl: ViewController
+    , private zone: NgZone) {
     this.autocompleteItems = [];
     this.autocomplete = {
       query: ''
@@ -24,14 +26,15 @@ export class AutocompletePage {
 
   ionViewDidLoad() {
     console.log('teste');
-    this.loadMap();
+    this.loadMap(this.lat, this.lng);
   }
-  loadMap() {
-    const latLng = new google.maps.LatLng(-19.932987, -43.971652);
+  loadMap(aLat, aLng) {
+    // const latLng = new google.maps.LatLng(-19.932987, -43.971652);
+    const latLng = new google.maps.LatLng(aLat, aLng);
 
     const mapOptions = {
       center: latLng,
-      zoom: 15,
+      zoom: 16,
       mapTypeId: 'roadmap' // google.maps.MapTypeId.ROADMAP
     };
 
@@ -43,7 +46,26 @@ export class AutocompletePage {
   }
 
   chooseItem(item: any) {
-    this.viewCtrl.dismiss(item);
+    const component = this;
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ 'address': item }, function (results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        console.log(results[0].geometry.location.lat());
+        console.log(results[0].geometry.location.lng());
+        console.log(status);
+        // component.loadMap(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+        // //In this case it creates a marker, but you can get the lat and lng from the location.LatLng
+        component.map.setCenter(results[0].geometry.location);
+        const marker = new google.maps.Marker({
+          map: component.map,
+          position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+
+    // this.viewCtrl.dismiss(item);
     console.log(item);
   }
 
@@ -68,5 +90,5 @@ export class AutocompletePage {
           });
         }
       });
-    }
   }
+}

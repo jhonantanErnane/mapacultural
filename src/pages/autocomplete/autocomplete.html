@@ -6,12 +6,9 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col col-8>
+      <ion-col>
         <ion-searchbar cancelButtonText="Cancelar" placeholder="Endereco" [(ngModel)]="autocomplete.query" (ionInput)="updateSearch()"
           (ionCancel)="dismiss()"></ion-searchbar>
-      </ion-col>
-      <ion-col>
-        <a (click)="dismiss()">Cancelar</a>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -22,6 +19,9 @@
   </ion-list>
   <div #map id="map"></div>
 
+  <!-- <ion-col> -->
+  <a (click)="dismiss()">Cancelar</a>
+  <!-- </ion-col> -->
   <!-- <agm-map [latitude]="lat" [longitude]="lng">
     <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
   </agm-map> -->
