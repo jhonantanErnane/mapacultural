@@ -33,10 +33,15 @@ export class DatabaseProvider {
           'desc': desc
         }
     };
-      return this.db.list('locais').update(catID.toString(), newPlace);
+      return this.db.list(`locais/${catID}`).push(newPlace); // (catID.toString(), newPlace);
   }
   postNewFoto(catID: number, nome: string, localPicture: string ) {
     return firebase.storage().ref(`/${catID}/${nome}/picture.png`)
     .putString(localPicture, 'base64', {contentType: 'image/png'});
+  }
+
+  getOneRegister(nome: string, catID: number): Observable<any[]> {
+    return this.db.list(`/locais/${catID}/${nome}`);
+    // return this.db.list('/locais');
   }
 }

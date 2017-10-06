@@ -12,6 +12,7 @@ export class AutocompletePage {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
   // una
+  item: {endereco: string, lat: number; long: number} = {endereco: null, lat: null, long: null};
   lat = -19.9758436;
   lng = -44.02022569999997;
   service = new google.maps.places.AutocompleteService();
@@ -48,10 +49,13 @@ export class AutocompletePage {
   chooseItem(item: any) {
     const component = this;
     const geocoder = new google.maps.Geocoder();
+    component.item.endereco = item;
     geocoder.geocode({ 'address': item }, function (results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
+      if (status === google.maps.GeocoderStatus.OK) {
         console.log(results[0].geometry.location.lat());
         console.log(results[0].geometry.location.lng());
+        component.item.lat = results[0].geometry.location.lat();
+        component.item.long = results[0].geometry.location.lng();
         console.log(status);
         // component.loadMap(results[0].geometry.location.lat(), results[0].geometry.location.lng());
         // //In this case it creates a marker, but you can get the lat and lng from the location.LatLng
@@ -65,7 +69,8 @@ export class AutocompletePage {
       }
     });
 
-    // this.viewCtrl.dismiss(item);
+    this.autocomplete.query = item;
+    this.autocompleteItems = [];
     console.log(item);
   }
 
@@ -90,5 +95,9 @@ export class AutocompletePage {
           });
         }
       });
+  }
+
+  confirmar() {
+    this.viewCtrl.dismiss(this.item);
   }
 }
