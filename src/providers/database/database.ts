@@ -44,4 +44,9 @@ export class DatabaseProvider {
     return this.db.list(`/locais/${catID}/${nome}`);
     // return this.db.list('/locais');
   }
+
+  getAllLocations(): FirebaseListObservable<any[]> {
+    return this.db.list('locais');
+  }
+
 }

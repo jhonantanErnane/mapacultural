@@ -62,8 +62,7 @@ export class CadastroFirstPage {
     this.providerdb.getAllCategories().subscribe((categories) => {
       this.loading.hideLoadingDefault();
       this.categorias = categories;
-      console.log(this.categorias);
-      console.log(categories);
+      // console.log(categories);
     });
     // this.searchControl = new FormControl();
     // // this.mapsAPILoader.load().then(() => {

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CadastroFirstPage } from '../cadastro-first/cadastro-first';
+import { MapaPage } from '../mapa/mapa';
 
 @Component({
   selector: 'page-menu',
@@ -18,6 +19,6 @@ export class MenuPage {
     this.navCtrl.push(CadastroFirstPage);
   }
   mapa() {
-    // this.navCtrl.push();
+    this.navCtrl.push(MapaPage);
   }
 }

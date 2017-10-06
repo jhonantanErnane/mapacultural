@@ -18,6 +18,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { DatabaseProvider } from '../providers/database/database';
 import { Camera } from '@ionic-native/camera';
 import { LoadingProvider } from '../providers/loading/loading';
+import { MapaPage } from '../pages/mapa/mapa';
 
 @NgModule({
   declarations: [
@@ -25,22 +26,19 @@ import { LoadingProvider } from '../providers/loading/loading';
     HomePage,
     MenuPage,
     CadastroFirstPage,
-    AutocompletePage
+    AutocompletePage,
+    MapaPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(environment.firebase)
-    // AgmCoreModule
-    // .forRoot({
-    //   apiKey: 'AIzaSyDaPkuFZA4USo1-evIwjof1qYgeSsARakw'
-    //   // AIzaSyDaPkuFZA4USo1-evIwjof1qYgeSsARakw
-    // }),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
+    MapaPage,
     MenuPage,
     CadastroFirstPage,
     AutocompletePage
