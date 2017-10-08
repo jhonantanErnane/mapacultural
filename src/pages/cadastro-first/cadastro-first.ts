@@ -8,7 +8,7 @@ import { DatabaseProvider } from '../../providers/database/database';
 import { Camera } from '@ionic-native/camera';
 import { LoadingProvider } from '../../providers/loading/loading';
 import { MenuPage } from '../menu/menu';
-
+import { AlertController } from 'ionic-angular';
 
 @Component({
   selector: 'page-cadastro-first',
@@ -36,6 +36,7 @@ export class CadastroFirstPage {
     , public navParams: NavParams
     , private ngZone: NgZone
     , private loading: LoadingProvider
+    , private alertCtrl: AlertController
     , private modalCtrl: ModalController, private providerdb: DatabaseProvider, private cameraPlugin: Camera) {
     // , private mapsAPILoader: MapsAPILoader) {
     this.address = {
@@ -134,10 +135,12 @@ export class CadastroFirstPage {
       this.contLoading--;
       this.semaforoLoading();
       console.log('Cadastro Realizado com sucesso');
+      // alert('cadastrou');
     }, (error) => {
       this.contLoading--;
       this.semaforoLoading();
       console.log('Erro ao cadastrar');
+      // alert(error.message.toString());
     });
   }
   semaforoLoading() {
@@ -148,10 +151,19 @@ export class CadastroFirstPage {
     if (this.contLoading === 0) {
       this.loading.hideLoadingDefault();
       this.MostrandoLoading = false;
+      this.showAlert();
       this.navCtrl.setRoot(MenuPage);
     }
   }
 
+  showAlert() {
+    const alert = this.alertCtrl.create({
+      title: 'Atenção',
+      subTitle: 'Registro cadastrado com sucesso!',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
   // semaforoErro() {
 
   // }
