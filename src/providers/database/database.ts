@@ -27,11 +27,10 @@ export class DatabaseProvider {
   // Firebase.Promise<void>
   postNewPlace(catID: number, nome: string, lat: number, long: number, desc: string): firebase.Promise<void> {
     const newPlace = {
-        [nome]: {
+          'nome': nome,
           'lat': lat,
           'long': long,
           'desc': desc
-        }
     };
       return this.db.list(`locais/${catID}`).push(newPlace); // (catID.toString(), newPlace);
   }

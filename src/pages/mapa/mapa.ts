@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
+import { Geolocation } from '@ionic-native/geolocation';
 declare var google;
 
 @Component({
@@ -13,31 +14,56 @@ export class MapaPage {
   lat = -19.9758436;
   lng = -44.02022569999997;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private dbProvider: DatabaseProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private dbProvider: DatabaseProvider,
+    private geolocation: Geolocation) {
   }
 
-  ionViewDidLoad() {
-    const component = this;
-    this.loadMap(this.lat, this.lng);
-    this.dbProvider.getAllLocations().subscribe((locais) => {
-      locais.forEach((local) => {
-        for (const key in local) {
-          if (local.hasOwnProperty(key)) {
-            console.log( local[key]);
-            for (const key2 in local[key]) {
-              if (local[key].hasOwnProperty(key2)) {
-                console.log(local[key][key2]);
+  ionViewWillEnter() {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.lat = resp.coords.latitude;
+      this.lng = resp.coords.longitude;
+     }).catch((error) => {
+      alert('Não foi possivel obter sua localização');
+      console.log(error.message);
+     });
+  }
 
-                const marker = new google.maps.Marker({
-                  map: component.map,
-                  position: { lat: local[key][key2].lat, lng: local[key][key2].long }
-                });
-              }
+  ionViewDidEnter() {
+    setTimeout( () => {
+      const component = this;
+      this.loadMap(this.lat, this.lng);
+      this.dbProvider.getAllLocations().subscribe((locais) => {
+        // console.log(locais);
+        locais.forEach((local) => {
+          // console.log(local);
+          for (const key in local) {
+            if (local.hasOwnProperty(key)) {
+              // console.log( local[key]);
+              // for (const key2 in local[key]) {
+              //   if (local[key].hasOwnProperty(key2)) {
+              //     console.log(local[key][key2]);
+
+                  const marker = new google.maps.Marker({
+                    map: component.map,
+                    position: { lat: local[key].lat, lng: local[key].long }
+                  });
+                  console.log(marker);
+                  const infoWindow = new google.maps.InfoWindow({
+                    content: `<h5>${local[key].nome}</h5>
+                              <p>${local[key].desc}</p>
+                    `
+                  });
+
+                  marker.addListener('click', function() {
+                    infoWindow.open(component.map, marker);
+                  });
+              //   }
+              // }
             }
           }
-        }
+        });
       });
-    });
+    }, 500);
   }
 
 

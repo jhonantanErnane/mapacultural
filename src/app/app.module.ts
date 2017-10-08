@@ -19,6 +19,7 @@ import { DatabaseProvider } from '../providers/database/database';
 import { Camera } from '@ionic-native/camera';
 import { LoadingProvider } from '../providers/loading/loading';
 import { MapaPage } from '../pages/mapa/mapa';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { MapaPage } from '../pages/mapa/mapa';
     StatusBar,
     SplashScreen,
     Camera,
+    Geolocation,
     AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DatabaseProvider,
