@@ -47,11 +47,13 @@ export class MapaPage {
                     map: component.map,
                     position: { lat: local[key].lat, lng: local[key].long }
                   });
-                  console.log(marker);
+                  // console.log(marker);
                   const infoWindow = new google.maps.InfoWindow({
                     content: `<h5>${local[key].nome}</h5>
                               <p>${local[key].desc}</p>
+                              <img border="0" align="Left" width:50%; src="${local[key].foto}">
                     `
+                    // <img border="0" align="Left" src="stagleton.jpg">
                   });
 
                   marker.addListener('click', function() {

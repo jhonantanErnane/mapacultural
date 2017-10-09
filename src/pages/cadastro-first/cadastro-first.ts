@@ -89,7 +89,7 @@ export class CadastroFirstPage {
 
   takePicture(): void {
     this.cameraPlugin.getPicture({
-      quality: 95,
+      quality: 50,
       destinationType: this.cameraPlugin.DestinationType.DATA_URL,
       sourceType: this.cameraPlugin.PictureSourceType.CAMERA,
       allowEdit: true,
@@ -106,17 +106,19 @@ export class CadastroFirstPage {
   }
 
   cadastrar() {
-    if (this.localPicture !== null) {
-      this.GravarFoto();
-    }
     this.GravarDados();
   }
 
   GravarDados() {
     this.contLoading++;
     this.semaforoLoading();
+    // console.log(this.categoriaSelecionada);
     this.providerdb.postNewPlace(this.categoriaSelecionada.$value, this.nome, this.latitude, this.longitude, this.desc)
     .then((success) => {
+      console.log(success);
+      if (this.localPicture !== null) {
+        this.GravarFoto(success.path.pieces_[1], success.path.pieces_[2]);
+      }
       this.contLoading--;
       this.semaforoLoading();
       console.log('Cadastro Realizado com sucesso');
@@ -127,11 +129,28 @@ export class CadastroFirstPage {
     });
   }
 
-  GravarFoto () {
+  GravarFoto ( nomeCategoria: string, chaveRegistro: string) {
     this.contLoading++;
     this.semaforoLoading();
-    this.providerdb.postNewFoto(this.categoriaSelecionada.$value, this.nome, this.localPicture)
+    this.providerdb.postNewFoto(nomeCategoria, this.nome, chaveRegistro, this.localPicture)
     .then((success) => {
+      // console.log('-----------------------downloadURL---------');
+      // console.log(success.downloadURL);
+
+      this.contLoading++;
+      this.semaforoLoading();
+      this.providerdb.updateRegisterFoto(nomeCategoria, chaveRegistro, this.nome, success.downloadURL)
+        .then((updateSuccess) => {
+          console.log('registro alterado com sucesso');
+          this.contLoading--;
+          this.semaforoLoading();
+        }, (updateError) => {
+          this.contLoading--;
+          this.semaforoLoading();
+          console.log(updateError.message);
+          console.log('registro não foi alterado');
+        });
+
       this.contLoading--;
       this.semaforoLoading();
       console.log('Cadastro Realizado com sucesso');
