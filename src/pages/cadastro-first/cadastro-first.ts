@@ -89,13 +89,14 @@ export class CadastroFirstPage {
 
   takePicture(): void {
     this.cameraPlugin.getPicture({
-      quality: 50,
+      quality: 60,
       destinationType: this.cameraPlugin.DestinationType.DATA_URL,
       sourceType: this.cameraPlugin.PictureSourceType.CAMERA,
-      allowEdit: true,
-      encodingType: this.cameraPlugin.EncodingType.PNG,
-      targetWidth: 500,
+      // allowEdit: true,
+      encodingType: this.cameraPlugin.EncodingType.JPEG,
+      targetWidth: 220,
       targetHeight: 500,
+      correctOrientation: true,
       saveToPhotoAlbum: true
     }).then(imageData => {
       this.localPicture = imageData;
@@ -106,7 +107,12 @@ export class CadastroFirstPage {
   }
 
   cadastrar() {
-    this.GravarDados();
+    if ((this.categoriaSelecionada) && (this.nome)
+    && (this.latitude) && (this.longitude) && (this.desc)) {
+      this.GravarDados();
+    } else {
+      this.showAlert('Por favor preencha todos os campos!');
+    }
   }
 
   GravarDados() {
@@ -170,15 +176,15 @@ export class CadastroFirstPage {
     if (this.contLoading === 0) {
       this.loading.hideLoadingDefault();
       this.MostrandoLoading = false;
-      this.showAlert();
+      this.showAlert('Registro cadastrado com sucesso!');
       this.navCtrl.setRoot(MenuPage);
     }
   }
 
-  showAlert() {
+  showAlert(mensagem: string ) {
     const alert = this.alertCtrl.create({
       title: 'Atenção',
-      subTitle: 'Registro cadastrado com sucesso!',
+      subTitle: `${mensagem}`,
       buttons: ['OK']
     });
     alert.present();

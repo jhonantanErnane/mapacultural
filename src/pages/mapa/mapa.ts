@@ -18,7 +18,7 @@ export class MapaPage {
     private geolocation: Geolocation) {
   }
 
-  ionViewWillEnter() {
+  ngOnInit() {
     this.geolocation.getCurrentPosition().then((resp) => {
       this.lat = resp.coords.latitude;
       this.lng = resp.coords.longitude;
@@ -28,7 +28,7 @@ export class MapaPage {
      });
   }
 
-  ionViewDidEnter() {
+  ionViewWillEnter() {
     setTimeout( () => {
       const component = this;
       this.loadMap(this.lat, this.lng);
@@ -67,6 +67,10 @@ export class MapaPage {
       });
     }, 500);
   }
+
+  // ionViewDidEnter() {
+
+  // }
 
 
 
